@@ -75,7 +75,9 @@ public class AuthManager {
 
         // Open the Authorization URI in an Auth Tab if supported by the default browser.
         if (CustomTabsClient.isAuthTabSupported(context, packageName)) {
-            AuthTabIntent authTabIntent = new AuthTabIntent.Builder().build();
+            AuthTabIntent authTabIntent = new AuthTabIntent.Builder()
+                .setEphemeralBrowsingEnabled(true)
+                .build();
             authTabIntent.launch(launcher, uri, mRedirectScheme);
         } else {
             // Fall back to a Custom Tab.
